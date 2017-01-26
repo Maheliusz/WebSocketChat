@@ -89,14 +89,14 @@ public class Functions {
         if (chat.isUserOnChannel(username))
             removeUserFromChannel(user);
         chat.addUserToChannel(username, channel);
-        broadcastMessage(channel, username + "joined", channel);
+        broadcastMessage(channel, username + " joined", channel);
     }
 
     public void removeUserFromChannel(Session user) {
         String username = chat.getUserName(user);
         String channel = chat.getUsersChannel(username);
         chat.removeUserFromChannel(username);
-        broadcastMessage(channel, username + "left", channel);
+        broadcastMessage(channel, username + " left", channel);
     }
 
     public void addChannel() {

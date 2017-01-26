@@ -25,7 +25,7 @@ public class Chat {
     }
 
     public void addChannel(){
-        String channel = "Channel" + nextChannelNumber.incrementAndGet();
+        String channel = "Channel " + nextChannelNumber.incrementAndGet();
         channels.add(channel);
     }
 

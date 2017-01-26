@@ -21,15 +21,15 @@ id("message").addEventListener("keypress", function (e) {
 });
 
 id("addchannel").addEventListener("click", function () {
-    webSocket.send("addChannel|");
+    webSocket.send("addChannel_");
 });
 
 id("exitchannel").addEventListener("click", function () {
-    webSocket.send("channelExit|");
+    webSocket.send("channelExit_");
 });
 
 function channelEnter(channel) {
-    webSocket.send("channelEnter|" + channel);
+    webSocket.send("channelEnter_" + channel);
 }
 
 function sendWait(message) {
@@ -55,7 +55,7 @@ function login() {
     var username = getCookie("username");// getCookie("username");//= getCookie("username");
     if (username != "") {
         alert("Logging as " + username + "...");
-        sendWait("name|" + username);
+        sendWait("name_" + username);
         return;
     }
     else
@@ -81,13 +81,13 @@ function setUsername() {
 
     setCookie("username", username);
 
-    webSocket.send("name|" + username);
+    webSocket.send("name_" + username);
 }
 
 //Send a message if it's not empty, then clear the input field
 function sendMessage(message) {
     if (message !== "") {
-        webSocket.send("user|" + message);
+        webSocket.send("msg_" + message);
         id("message").value = "";
     }
 }
@@ -96,7 +96,7 @@ function sendMessage(message) {
 function handleMessage(msg) {
 
     var data = JSON.parse(msg.data);
-    if (data.reason == "takenusername") {
+    if (data.reason == "taken") {
         alert("Nazwa jest juz zajeta");
         setUsername();
         return;

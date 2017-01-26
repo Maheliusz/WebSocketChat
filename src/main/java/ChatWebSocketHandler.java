@@ -24,10 +24,10 @@ public class ChatWebSocketHandler {
 
     @OnWebSocketMessage
     public void onMessage(Session user, String message) {
-        String reason = message.substring(0, message.indexOf('|'));
-        String contents = message.substring(message.indexOf('|') + 1);
+        String reason = message.substring(0, message.indexOf('_'));
+        String contents = message.substring(message.indexOf('_') + 1);
         switch (reason) {
-            case "user":
+            case "msg":
                 try {
                     functions.sendUsersMessage(user, contents);
                 } catch (NoSuchElementException ex) {
@@ -41,7 +41,7 @@ public class ChatWebSocketHandler {
                 } catch (IllegalArgumentException ex) {
                     try {
                         user.getRemote().sendString(String.valueOf(new JSONObject()
-                                .put("reason", "takenusername")));
+                                .put("reason", "taken")));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
