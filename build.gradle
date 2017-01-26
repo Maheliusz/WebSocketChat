@@ -1,0 +1,25 @@
+group '1.0'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'jetty'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile "com.sparkjava:spark-core:2.5.4" //add to build.gradle
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
+    // https://mvnrepository.com/artifact/com.j2html/j2html
+    compile group: 'com.j2html', name: 'j2html', version: '0.7'
+    // https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api
+    compile group: 'javax.websocket', name: 'javax.websocket-api', version: '1.1'
+
+}
