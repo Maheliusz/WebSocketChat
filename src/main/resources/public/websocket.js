@@ -36,7 +36,7 @@ function sendWait(message) {
     this.waitForConnection(function () {
         webSocket.send(message);
     }, 1000);
-};
+}
 
 function waitForConnection(callback, interval) {
     if (webSocket.readyState === 1) {
@@ -55,7 +55,6 @@ function login() {
     if (username != "") {
         alert("Logging as " + username + "...");
         sendWait("name_" + username);
-        return;
     }
     else
         setUsername();
@@ -112,7 +111,7 @@ function handleMessage(msg) {
             var marker = document.createElement('button');
             marker.onclick = function () {
                 channelEnter(channel);
-            }
+            };;
             var t = document.createTextNode(channel);
             marker.appendChild(t);
 
