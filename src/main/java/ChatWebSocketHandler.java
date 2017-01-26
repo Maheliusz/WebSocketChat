@@ -61,11 +61,7 @@ public class ChatWebSocketHandler {
                     functions.sendMessageToUser(user, "You aren't on any channel");
                 }
                 break;
-            case "refresh":
-
-                break;
-
-        }
+          }
     }
 
 }
