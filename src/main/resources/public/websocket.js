@@ -43,7 +43,6 @@ function waitForConnection(callback, interval) {
         callback();
     } else {
         var that = this;
-        // optional: implement backoff for interval here
         setTimeout(function () {
             that.waitForConnection(callback, interval);
         }, interval);
@@ -52,7 +51,7 @@ function waitForConnection(callback, interval) {
 
 
 function login() {
-    var username = getCookie("username");// getCookie("username");//= getCookie("username");
+    var username = getCookie("username");
     if (username != "") {
         alert("Logging as " + username + "...");
         sendWait("name_" + username);
@@ -141,7 +140,11 @@ function getCookie(cname) {
 }
 
 function setCookie(name, value) {
-    document.cookie = name + "=" + value + ";";
+    var now = new Date();
+    var time = now.getTime();
+    time += 60 * 1000;
+    now.setTime(time);
+    document.cookie = name + "=" + value + "; expires=" + now.toUTCString();
 }
 
 //Helper function for inserting HTML as the first child of an element
