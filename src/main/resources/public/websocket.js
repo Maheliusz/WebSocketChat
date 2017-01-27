@@ -79,7 +79,7 @@ function setUsername() {
 
     setCookie("username", username);
 
-    webSocket.send("name_" + username);
+    sendWait("name_" + username);
 }
 
 //Send a message if it's not empty, then clear the input field

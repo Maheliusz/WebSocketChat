@@ -19,6 +19,7 @@ public class ChatWebSocketHandler {
 
     @OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
+        functions.removeUserFromChannel(user);
         functions.removeUser(user);
     }
 

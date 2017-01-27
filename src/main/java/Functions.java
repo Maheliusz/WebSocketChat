@@ -11,16 +11,7 @@ public class Functions {
     private HTMLMaker htmlMaker = new HTMLMaker();
 
     public void refresh() {
-        chat.getsUsersSessions().stream().filter(Session::isOpen).forEach(session -> {
-            try {
-                session.getRemote().sendString(String.valueOf(new JSONObject()
-                        .put("reason", "refresh")
-                        .put("channellist", chat.getChannels())
-                ));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        chat.getsUsersSessions().stream().filter(Session::isOpen).forEach(this::refreshForUser);
     }
 
     public void refreshForUser(Session user) {
