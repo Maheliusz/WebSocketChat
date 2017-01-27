@@ -15,6 +15,7 @@ public class ChatWebSocketHandler {
     @OnWebSocketConnect
     public void onConnect(Session user) {
         functions.refreshForUser(user);
+        functions.sendMessageToUser(user, "Welcome! Enter channel to start chatting.");
     }
 
     @OnWebSocketClose
@@ -65,7 +66,7 @@ public class ChatWebSocketHandler {
             case "logout":
                 try {
                     functions.removeUserFromChannel(user);
-                } catch (NoSuchElementException ex){
+                } catch (NoSuchElementException ex) {
                     functions.sendMessageToUser(user, "You aren't on any channel");
                 } finally {
                     functions.removeUser(user);
@@ -78,7 +79,7 @@ public class ChatWebSocketHandler {
                     }
                 }
                 break;
-          }
+        }
     }
 
 }
