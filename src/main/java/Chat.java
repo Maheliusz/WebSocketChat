@@ -82,11 +82,10 @@ public class Chat {
     }
 
     public List<String> getUsersOnChannel(String channel){
-        List<String> res = usersOnChannel.entrySet()
+        return usersOnChannel.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue().equals(channel))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toCollection(LinkedList::new));
-        return res;
     }
 }
