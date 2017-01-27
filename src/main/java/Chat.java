@@ -1,12 +1,10 @@
 import org.eclipse.jetty.websocket.api.Session;
 
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 /**
  * Created by Michał Zakrzewski on 2017-01-25.
@@ -81,5 +79,14 @@ public class Chat {
 
     public List<String> getChannels() {
         return channels;
+    }
+
+    public List<String> getUsersOnChannel(String channel){
+        List<String> res = usersOnChannel.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().equals(channel))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toCollection(LinkedList::new));
+        return res;
     }
 }

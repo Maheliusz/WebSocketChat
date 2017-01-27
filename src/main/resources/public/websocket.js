@@ -104,13 +104,22 @@ function handleMessage(msg) {
         return;
     }
 
-    if(data.reason == "login")
+    if (data.reason == "login")
         setUsername();
 
     if (data.reason == "message")
         insert("chat", data.userMessage);
 
-    if(data.reason == "refresh") {
+    if (data.reason == "refresh") {
+        if (data.userlist !== "") {
+
+            id("userlist").innerHTML = "";
+            data.userlist.forEach(function (user) {
+                insert("userlist", "<li>" + user + "</li>");
+            });
+            insert("userlist", "<li>USERS ON THIS CHANNEL:</li>");
+        }
+
         id("channellist").innerHTML = "";
 
         data.channellist.forEach(function (channel) {
@@ -118,7 +127,7 @@ function handleMessage(msg) {
             var marker = document.createElement('button');
             marker.onclick = function () {
                 channelEnter(channel);
-            };;
+            };
             var t = document.createTextNode(channel);
             marker.appendChild(t);
 

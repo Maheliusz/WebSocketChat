@@ -19,8 +19,21 @@ public class Functions {
             user.getRemote().sendString(String.valueOf(new JSONObject()
                     .put("reason", "refresh")
                     .put("channellist", chat.getChannels())
+                    .put("userlist", chat.getUsersOnChannel(chat.getUsersChannel(chat.getUserName(user))))
             ));
-        } catch (Exception e) {
+        }
+        catch (NoSuchElementException e){
+            try {
+                user.getRemote().sendString(String.valueOf(new JSONObject()
+                        .put("reason", "refresh")
+                        .put("channellist", chat.getChannels())
+                        .put("userlist", "")));
+            }
+            catch (Exception err){
+                err.printStackTrace();
+            }
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -81,6 +94,7 @@ public class Functions {
             removeUserFromChannel(user);
         chat.addUserToChannel(username, channel);
         broadcastMessage(channel, username + " joined", channel);
+        refresh();
     }
 
     public void removeUserFromChannel(Session user) {
@@ -96,6 +110,7 @@ public class Functions {
 
     public void removeUser(Session user) {
         chat.removeUser(user);
+        refresh();
     }
 
     public void addUsername(Session user, String username) {

@@ -47,6 +47,17 @@ li {
     top: 550px;
 }
 
+#userlist {
+    position: fixed;
+    left: 50%;
+    list-style: none;
+    margin-left: 405px;
+    background: #f0f0f9;
+    padding: 5px 10px;
+    width: 150px;
+    top: 11px;
+}
+
 #channellist {
     overflow-y: scroll;
     position: fixed;
