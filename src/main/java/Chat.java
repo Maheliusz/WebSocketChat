@@ -62,10 +62,7 @@ public class Chat {
     }
 
     public boolean isUserOnChannel(String username){
-        if(usersOnChannel.containsKey(username))
-            return true;
-        else
-            return false;
+        return usersOnChannel.containsKey(username);
     }
 
     public String getUserName(Session user){
