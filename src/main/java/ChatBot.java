@@ -34,6 +34,6 @@ public class ChatBot {
     }
 
     private String getDay() {
-        return new SimpleDateFormat("EEE").format(new Date());
+        return new SimpleDateFormat("EEEEEEEEEEEE").format(new Date());
     }
 }

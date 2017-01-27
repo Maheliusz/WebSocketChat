@@ -26,11 +26,12 @@ public class WeatherTask {
             String weather = "";
             JSONArray arr = json.getJSONArray("weather");
             for (int i = 0; i < arr.length(); i++) {
-                weather += arr.getJSONObject(i).getString("main") + " - "
-                        + arr.getJSONObject(i).getString("description") + "\n";
+                weather += arr.getJSONObject(i).getString("main")
+                        /*+ " - " + arr.getJSONObject(i).getString("description")*/
+                        + "\n";
             }
-            return "Weather in " + json.getString("name") + " "
-                    + weather + "\n"
+            return "Weather in " + json.getString("name") + ": "
+                    + weather + ",\n"
                     + "Celsius degrees: " + (json.getJSONObject("main").getDouble("temp") - 273.15);
         } catch (JSONException | IOException e) {
             //e.printStackTrace();
