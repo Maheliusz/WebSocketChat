@@ -102,6 +102,7 @@ public class Functions {
         String channel = chat.getUsersChannel(username);
         chat.removeUserFromChannel(username);
         broadcastMessage(channel, username + " left", channel);
+        refresh();
     }
 
     public void addChannel() {
