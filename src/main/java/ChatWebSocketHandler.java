@@ -62,6 +62,22 @@ public class ChatWebSocketHandler {
                     functions.sendMessageToUser(user, "You aren't on any channel");
                 }
                 break;
+            case "logout":
+                try {
+                    functions.removeUserFromChannel(user);
+                } catch (NoSuchElementException ex){
+                    functions.sendMessageToUser(user, "You aren't on any channel");
+                } finally {
+                    functions.removeUser(user);
+                    try {
+                        user.getRemote().sendString(String.valueOf(new JSONObject()
+                                .put("reason", "login")
+                        ));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
           }
     }
 

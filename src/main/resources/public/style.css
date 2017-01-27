@@ -40,6 +40,13 @@ li {
     top: 550px;
 }
 
+#logout {
+    position: fixed;
+    left: 50%;
+    margin-left: 350px;
+    top: 550px;
+}
+
 #channellist {
     overflow-y: scroll;
     position: fixed;

@@ -13,6 +13,10 @@ id("send").addEventListener("click", function () {
     sendMessage(id("message").value);
 });
 
+id("logout").addEventListener("click", function () {
+    webSocket.send("logout_");
+})
+
 //Send message if enter is pressed in the input field
 id("message").addEventListener("keypress", function (e) {
     if (e.keyCode === 13) {
@@ -99,6 +103,9 @@ function handleMessage(msg) {
         setUsername();
         return;
     }
+
+    if(data.reason == "login")
+        setUsername();
 
     if (data.reason == "message")
         insert("chat", data.userMessage);
